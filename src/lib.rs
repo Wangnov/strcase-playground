@@ -40,8 +40,7 @@ pub fn to_kebab_case(s: &str) -> String {
 
         if let Some((prev_idx, prev_ch)) = prev {
             let boundary = (prev_ch.is_ascii_lowercase() && ch.is_ascii_uppercase())
-                || ((prev_ch.is_ascii_alphabetic() || !prev_ch.is_ascii())
-                    && ch.is_ascii_digit())
+                || (prev_ch.is_ascii_alphabetic() && ch.is_ascii_digit())
                 || (prev_ch.is_ascii_uppercase() && ch.is_ascii_lowercase() && {
                     let mut lookback = s[..prev_idx].chars().rev();
                     let before_prev = lookback.next();
@@ -125,5 +124,10 @@ mod tests {
     #[test]
     fn kebab_case_splits_letter_digit_boundaries() {
         assert_eq!(to_kebab_case("foo2bar"), "foo-2bar");
+    }
+
+    #[test]
+    fn kebab_case_does_not_split_non_ascii_before_digits() {
+        assert_eq!(to_kebab_case("é2bar"), "é2bar");
     }
 }
