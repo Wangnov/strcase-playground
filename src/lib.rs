@@ -20,7 +20,7 @@ pub fn to_snake_case(_s: &str) -> String {
 /// Convert `s` to `camelCase`. Stubbed — implement in issue-specific PR.
 pub fn to_camel_case(s: &str) -> String {
     fn is_sep(ch: char) -> bool {
-        ch == '_' || ch == '-' || ch.is_ascii_whitespace()
+        ch == '_' || ch == '-' || ch.is_whitespace()
     }
 
     let chars: Vec<char> = s.chars().collect();
@@ -135,5 +135,10 @@ mod tests {
     #[test]
     fn camel_case_splits_letter_digit_boundary() {
         assert_eq!(to_camel_case("foo2bar"), "foo2bar");
+    }
+
+    #[test]
+    fn camel_case_splits_unicode_whitespace() {
+        assert_eq!(to_camel_case("foo\u{2003}bar"), "fooBar");
     }
 }
