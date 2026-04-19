@@ -29,7 +29,7 @@ pub fn to_kebab_case(s: &str) -> String {
     let mut prev: Option<(usize, char)> = None;
 
     for (idx, ch) in s.char_indices() {
-        let is_separator = ch == '_' || ch == '-' || ch.is_ascii_whitespace();
+        let is_separator = ch == '_' || ch == '-' || ch.is_whitespace();
         if is_separator {
             if let Some(start) = word_start.take() {
                 words.push(&s[start..idx]);
@@ -129,5 +129,10 @@ mod tests {
     #[test]
     fn kebab_case_does_not_split_non_ascii_before_digits() {
         assert_eq!(to_kebab_case("é2bar"), "é2bar");
+    }
+
+    #[test]
+    fn kebab_case_splits_on_unicode_whitespace() {
+        assert_eq!(to_kebab_case("foo\u{2003}bar"), "foo-bar");
     }
 }
