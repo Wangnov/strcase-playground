@@ -1,0 +1,8 @@
+[package]
+name = "strcase"
+version = "0.1.0"
+edition = "2024"
+description = "Minimal string case conversion (snake/camel/kebab). agent-meeting M4.1 validation target."
+license = "MIT OR Apache-2.0"
+
+[dependencies]

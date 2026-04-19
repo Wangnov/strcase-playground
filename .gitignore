@@ -1,0 +1,6 @@
+/target
+Cargo.lock
+
+# Local Claude Code plugin state (not meant for tracking)
+.omc/
+.DS_Store
