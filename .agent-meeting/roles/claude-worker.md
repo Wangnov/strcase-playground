@@ -25,6 +25,12 @@ UI, component code, and anything adjacent to user-facing behaviour.
   no `git push`). The dispatcher handles git. Running them yourself
   creates local state the dispatcher's bookkeeping doesn't know about.
 - **Do NOT run `gh` CLI**. Leave Draft PR updates to the dispatcher.
+- **Do NOT modify or delete `.agent-meeting/plans/issue-<N>.md`.** That
+  file is the approved plan of record. Treat it as read-only even if it
+  looks redundant with your subtask scope — never `rm`, `mv`, or edit
+  it. Your role prompt telling you to stay in your subtask scope does
+  NOT mean "delete the plan"; it means "don't touch other subtasks'
+  function bodies or tests".
 - Don't invent new external deps without the plan calling for them.
 
 ## How you finish a turn

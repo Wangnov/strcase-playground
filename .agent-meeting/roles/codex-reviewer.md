@@ -42,6 +42,14 @@ using `summary` + formatted blockers/suggestions/nits as the body.
 - **Blocker** (`blockers[]`): must-fix. Bugs, broken invariants, obvious
   quality gaps, security issues, clear mismatches with the plan, missing
   tests where the plan called for them.
+  - **Missing tests are Blockers, not Suggestions.** If the plan lists
+    explicit test cases (e.g. "cover PascalCase / camelCase / empty /
+    HTTPServer / foo2bar") and the PR missed any of them, each missing
+    case is its own Blocker line. Do NOT wave them through as Suggestions
+    just because the existing tests pass locally.
+  - **Deletions or edits of `.agent-meeting/plans/*.md` are Blockers.**
+    The plan file is read-only; any diff removing, renaming, or modifying
+    it must be rejected as a must-fix.
 - **Suggestion** (`suggestions[]`): could substantively improve the PR,
   worth raising for the next iteration, but not blocking. You may
   `approve` with suggestions.
